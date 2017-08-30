@@ -14,7 +14,6 @@
     };
     
     MyInput.prototype.fireEvent_ = function (e) {
-        console.log(this.$input_.val());
         $(document).trigger(e.data, [this.$input_.val()]);
     };
 
@@ -36,12 +35,12 @@
     };
 
     MyDisplay.prototype.bindEvents_ = function () {
-        $(document).on(this.EventType.MY_CHANGE, this.myChangeListener_.bind(this));
+        $(document).on(this.EventType.MY_CHANGE, null, "display data", this.myChangeListener_.bind(this));
     };
 
     MyDisplay.prototype.myChangeListener_ = function (event, data) {
-        console.log(event);
-        console.log(data);
+        console.log(event.data);
+        console.log(data); // display data
         this.$display_.text(data);
     };
 
