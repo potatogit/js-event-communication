@@ -10,7 +10,7 @@
     };
 
     MyInput.prototype.bindEvents_ = function () {
-        this.$input_.on("keydown", null, this.EventType.MY_CHANGE, this.fireEvent_.bind(this));
+        this.$input_.on("keyup", null, this.EventType.MY_CHANGE, this.fireEvent_.bind(this));
     };
     
     MyInput.prototype.fireEvent_ = function (e) {
@@ -46,7 +46,5 @@
     };
 
     var myDisplay = new MyDisplay(".my-display", options);
-
-    // TODO: fix bug that input and display are not synchronised
 
 })(jQuery);
