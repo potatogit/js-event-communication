@@ -6,7 +6,7 @@
     };
 
     MyInput.prototype.EventType = {
-        MY_CHANGE: "my-change"
+        MY_CHANGE: "my-change" // value mustn't have space
     };
 
     MyInput.prototype.bindEvents_ = function () {
