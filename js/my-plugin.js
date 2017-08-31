@@ -5,16 +5,16 @@
         this.bindEvents_();
     };
 
-    MyInput.prototype.EventType = {
+    MyInput.EventType = { // MyInput function's static attribute
         MY_CHANGE: "my-change" // value mustn't have space
     };
 
     MyInput.prototype.bindEvents_ = function () {
-        this.$input_.on("keyup", null, this.EventType.MY_CHANGE, this.fireEvent_.bind(this));
+        this.$input_.on("keyup", null, MyInput.EventType.MY_CHANGE, this.fireEvent_.bind(this));
     };
     
     MyInput.prototype.fireEvent_ = function (e) {
-        $(document).trigger(e.data, [this.$input_.val()]);
+        $(document).trigger(e.data, this.$input_.val());
     };
 
     var options = {
@@ -25,22 +25,19 @@
     var myInput = new MyInput(".my-input", options);
 
 
-    var MyDisplay = function (ele, opt) {
+    var MyDisplay = function (ele, opt) { // this is an anonymous function
         this.$display_ = $(ele);
         this.bindEvents_();
     };
 
-    MyDisplay.prototype.EventType = {
-        MY_CHANGE: "my-change"
-    };
 
     MyDisplay.prototype.bindEvents_ = function () {
-        $(document).on(this.EventType.MY_CHANGE, null, "display data", this.myChangeListener_.bind(this));
+        $(document).on(MyInput.EventType.MY_CHANGE, null, "display data", this.myChangeListener_.bind(this));
     };
 
     MyDisplay.prototype.myChangeListener_ = function (event, data) {
-        console.log(event.data);
-        console.log(data); // display data
+        console.log(event.data); // "display data"
+        console.log(data); // input content
         this.$display_.text(data);
     };
 
